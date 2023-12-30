@@ -1,3 +1,7 @@
+#[warn(clippy::all, clippy::pedantic)]
 fn main() {
-    println!("Hello, world! I'm Mary Poppins y'all!");
+    let my_list = ["ONE", "TWO", "THREE"];
+    for i in my_list {
+        println!("{i}");
+    }
 }
