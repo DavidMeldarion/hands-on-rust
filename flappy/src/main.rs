@@ -30,10 +30,12 @@ struct Obstacle {
 impl Obstacle {
     fn new(x: i32, score: i32) -> Self {
         let mut random = RandomNumberGenerator::new();
+        let gap = SCREEN_HEIGHT/2;
+        let min_height = SCREEN_HEIGHT/2;
         Obstacle {
             x,
-            gap_y: random.range(10, 40),
-            size: i32::max(2, 20 - score),
+            gap_y: random.range(min_height, SCREEN_HEIGHT),
+            size: i32::max(2, gap - score),
         }
     }
     fn render(&mut self, ctx: &mut BTerm, player_x: i32) {
@@ -161,8 +163,12 @@ impl State {
 }
 
 fn main() -> BError {
-    let context = BTermBuilder::simple80x50()
+    let context = BTermBuilder::new()
         .with_title("Flappy Dragon")
+        .with_tile_dimensions(16, 16)
+        .with_font("../resources/flappy32.png", 32, 32)
+        .with_simple_console(SCREEN_WIDTH, SCREEN_HEIGHT, "../resources/flappy32.png")
+        .with_fancy_console(SCREEN_WIDTH, SCREEN_HEIGHT, "../resources/flappy32.png")
         .build()?;
     main_loop(context, State::new())
 }
