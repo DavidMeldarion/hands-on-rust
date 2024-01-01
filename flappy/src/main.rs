@@ -7,7 +7,7 @@ enum GameMode {
 const SCREEN_WIDTH: i32 = 80;
 const SCREEN_HEIGHT: i32 = 50;
 const FRAME_DURATION: f32 = 75.0;
-const DRAGON_FRAMES : [u16; 6] = [ 64, 1, 2, 3, 2, 1 ];
+const DRAGON_FRAMES: [u16; 6] = [64, 1, 2, 3, 2, 1];
 struct Player {
     x: i32,
     y: f32,
@@ -32,8 +32,8 @@ struct Obstacle {
 impl Obstacle {
     fn new(x: i32, score: i32) -> Self {
         let mut random = RandomNumberGenerator::new();
-        let gap = SCREEN_HEIGHT/2;
-        let min_height = SCREEN_HEIGHT/2;
+        let gap = SCREEN_HEIGHT / 2;
+        let min_height = SCREEN_HEIGHT / 2;
         Obstacle {
             x,
             gap_y: random.range(min_height, SCREEN_HEIGHT),
@@ -78,7 +78,7 @@ impl Player {
             PointF::new(2.0, 2.0),
             WHITE,
             NAVY,
-            DRAGON_FRAMES[self.frame]
+            DRAGON_FRAMES[self.frame],
         );
         ctx.set_active_console(0);
     }
@@ -183,9 +183,9 @@ fn main() -> BError {
     let context = BTermBuilder::new()
         .with_title("Flappy Dragon")
         .with_tile_dimensions(16, 16)
-        .with_font("../resources/flappy32.png", 32, 32)
-        .with_simple_console(SCREEN_WIDTH, SCREEN_HEIGHT, "../resources/flappy32.png")
-        .with_fancy_console(SCREEN_WIDTH, SCREEN_HEIGHT, "../resources/flappy32.png")
+        .with_font("flappy32.png", 32, 32)
+        .with_simple_console(SCREEN_WIDTH, SCREEN_HEIGHT, "flappy32.png")
+        .with_fancy_console(SCREEN_WIDTH, SCREEN_HEIGHT, "flappy32.png")
         .build()?;
     main_loop(context, State::new())
 }
